@@ -1,0 +1,357 @@
+<Config>:
+# Naos ip and location and subject id configuration
+    experimenter_ip:experimenter_ip
+    nao_ip_center:nao_ip_center
+    nao_ip_right:nao_ip_right
+    nao_ip_left:nao_ip_left
+    nao_ip_center_Howie:nao_ip_center_Howie
+    nao_ip_center_Where:nao_ip_center_Where
+    nao_ip_center_Which:nao_ip_center_Which
+    nao_ip_left_Howie:nao_ip_left_Howie
+    nao_ip_left_Where:nao_ip_left_Where
+    nao_ip_left_Which:nao_ip_left_Which
+    nao_ip_right_Howie:nao_ip_right_Howie
+    nao_ip_right_Where:nao_ip_right_Where
+    nao_ip_right_Which:nao_ip_right_Which
+
+    Widget:
+        Label:
+            pos: root.width*0.4 , root.height*0.9
+            size: root.width*0.2 , root.height*0.08
+            text:'SetUp screen'
+            font_size:30
+            color:0,0,0,1
+
+    Widget:
+        TextInput:
+            id:experimenter_ip
+            pos: root.width*0.75 , root.height*0.9
+            size: root.width*0.2 , root.height*0.065
+            #padding_x: self.width/3
+            #padding_y: ( self.height - self.line_height ) / 2
+            text:"192.168.0.103"
+            font_size:20
+            color:0,0,0,1
+        Label:
+            pos: root.width*0.75 , root.height*0.94
+            size: root.width*0.2 , root.height*0.08
+            text:'Experimenter ip:'
+            font_size:15
+            color:0,0,0,1
+
+
+    Widget:
+        Image:
+            pos: root.width*0.4 , root.height*0.62
+            size: root.width*0.2 , root.height*0.3
+            source: 'nao_site_down.jpg'
+        TextInput:
+            id:nao_ip_center
+            pos: root.width*0.4 , root.height*0.6
+            size: root.width*0.2 , root.height*0.065
+            #padding_x: self.width/3
+            #padding_y: ( self.height - self.line_height ) / 2
+            text:"192.168.0.102"
+            font_size:20
+            color:0,0,0,1
+        ToggleButton:
+            id:nao_ip_center_Howie
+            state:'normal'
+            group:1
+            pos: root.width*0.4 , root.height*0.53
+            text:'Howie'
+            size: 50, 40
+            on_release: app.update_robot_name('center','Howie')
+        ToggleButton:
+            id:nao_ip_center_Where
+            state:'normal'
+            group:1
+            pos: root.width*0.47 , root.height*0.53
+            text:'Where'
+            size: 50, 40
+            on_release: app.update_robot_name('center','Where')
+        ToggleButton:
+            id:nao_ip_center_Which
+            state:'normal'
+            group:1
+            pos: root.width*0.54 , root.height*0.53
+            text:'Which'
+            size: 50, 40
+            on_release: app.update_robot_name('center','Which')
+
+
+
+
+
+
+    Widget:
+        Image:
+            canvas.before:
+                PushMatrix
+                Rotate:
+                    angle: 270
+                    origin: self.center
+            canvas.after:
+                PopMatrix
+
+            pos: root.width*0.79 , root.height*0.38
+            size: root.width*0.3 , root.height*0.2
+            size: 150, 150
+            source: 'nao_site_down.jpg'
+
+        TextInput:
+            id:nao_ip_right
+            pos: root.width*0.78 , root.height*0.35
+            size: root.width*0.2 , root.height*0.065
+            text:"192.168.0.101"
+            font_size:20
+            color:0,0,0,1
+
+        ToggleButton:
+            group:2
+            id:nao_ip_right_Howie
+            state:'normal'
+            pos: root.width*0.78 , root.height*0.28
+            text:'Howie'
+            size: 50, 40
+            on_release: app.update_robot_name('right','Howie')
+        ToggleButton:
+            id:nao_ip_right_Where
+            state:'normal'
+            group:2
+            pos: root.width*0.85 , root.height*0.28
+            text:'Where'
+            size: 50, 40
+            on_release: app.update_robot_name('right','Where')
+        ToggleButton:
+            id:nao_ip_right_Which
+            state:'normal'
+            group:2
+            pos: root.width*0.92 , root.height*0.28
+            text:'Which'
+            size: 50, 40
+            on_release: app.update_robot_name('right','Which')
+
+    Widget:
+
+        Image:
+            canvas.before:
+                PushMatrix
+                Rotate:
+                    angle: 90
+                    origin: self.center
+            canvas.after:
+                PopMatrix
+
+            pos: root.width*0.05 , root.height*0.38
+            size: root.width*0.3 , root.height*0.2
+            size: 150, 150
+            source: 'nao_site_down.jpg'
+
+        TextInput:
+            id:nao_ip_left
+            pos: root.width*0.05 , root.height*0.35
+            size: root.width*0.2 , root.height*0.065
+            text:"192.168.0.104"
+            font_size:20
+            color:0,0,0,1
+
+        ToggleButton:
+            id:nao_ip_left_Howie
+            state:'normal'
+            group:0
+            pos: root.width*0.05 , root.height*0.28
+            text:'Howie'
+            size: 50, 40
+            on_release: app.update_robot_name('left','Howie')
+        ToggleButton:
+            id:nao_ip_left_Where
+            state:'normal'
+            group:0
+            pos: root.width*0.12 , root.height*0.28
+            text:'Where'
+            size: 50, 40
+            on_release: app.update_robot_name('left','Where')
+        ToggleButton:
+            id:nao_ip_left_Which
+            state:'normal'
+            group:0
+            pos: root.width*0.19 , root.height*0.28
+            text:'Which'
+            size: 50, 40
+            on_release: app.update_robot_name('left','Which')
+
+
+
+
+    Widget:
+        Label:
+            pos: root.width*0 , root.height*0.1
+            size: root.width*0.5 , root.height*0.065
+            text:"Subject ID:"
+            font_size:20
+            color:0,0,0,1
+
+        TextInput:
+            id:subject_id
+            pos: root.width*0.35 , root.height*0.1
+            size: root.width*0.1 , root.height*0.065
+            text:"0"
+            font_size:20
+            color:0,0,0,1
+
+    Widget:
+        Button:
+            pos: root.width*0 , root.height*0
+            size: root.width*1 , root.height*0.1
+            text:"Start"
+            color:0,0,0,1
+            font_size:30
+            bold: True
+            on_press: self.background_color = (1,0,0,1)
+            on_release: app.btn_released(self, app.start ,subject_id ,nao_ip_center,nao_ip_left,nao_ip_right,experimenter_ip)  # function to be called when button is pressed
+
+
+    Widget:
+        Label:
+            pos: root.width*0.65 , root.height*0.1
+            size: root.width*0.1 , root.height*0.065
+            text:"Gender:"
+            font_size:20
+            color:0,0,0,1
+
+        ToggleButton:
+            group:4
+            pos: root.width*0.78 , root.height*0.1
+            text:'M'
+            size: 50, 40
+            on_release: app.update_gender('m')
+
+        ToggleButton:
+            group:4
+            pos: root.width*0.85 , root.height*0.1
+            text:'F'
+            size: 50, 40
+            on_release: app.update_gender('f')
+
+
+
+<calibration_screen>:
+    Widget:
+        size_hint_y:0.2
+        Button:
+            pos: 0 , root.height*0.85
+            size_hint_x:0.2
+            text:"Stop \n Experiment"
+            color:0,0,0,1
+            background_color:1,0,0,1
+            font_size:15
+            bold: True
+            on_press: app.exit_experiment()
+
+    Widget:
+        Label:
+            pos: root.width*0.4 , root.height*0.9
+            size: root.width*0.2 , root.height*0.08
+            text:'Calibration'
+            font_size:30
+            color:0,0,0,1
+        Image:
+            pos: root.width*0.35 , root.height*0.4
+            size: root.width*0.3 , root.height*0.45
+            source: 'pupil-labs.jpg'
+
+        Button:
+            pos: root.width*0 , root.height*0
+            size: root.width*1 , root.height*0.1
+            text:"Start experiment"
+            color:0,0,0,1
+            font_size:30
+            bold: True
+            on_press: self.background_color = (1,0,0,1)
+            on_release: app.btn_released(self, app.calibration)  # function to be called when button is pressed
+
+
+<flow>:
+    next_button:next_button
+    score:score
+    pupil_count:pupil_count
+    Widget:
+        Label:
+            pos: root.width*0.4 , root.height*0.9
+            size: root.width*0.2 , root.height*0.08
+            text:'Flow screen'
+            font_size:30
+            color:0,0,0,1
+            size_hint_y:0.2
+
+    Widget:
+        Label:
+            id:score
+            pos: root.width*0.4 , root.height*0.6
+            size: root.width*0.2 , root.height*0.08
+            text:'Correct answer score: 0'
+            font_size:30
+            color:0,0,0,1
+            size_hint_y:0.2
+
+    Widget:
+        Label:
+            id:pupil_count
+            pos: root.width*0.4 , root.height*0.5
+            size: root.width*0.2 , root.height*0.08
+            text:'Pupil count: 0'
+            font_size:30
+            color:0,0,0,1
+            size_hint_y:0.2
+
+    Widget:
+        Button:
+            pos: root.width*0.7 , root.height*0.5
+            size: root.width*0.09 , root.height*0.08
+            size_hint_y:0.08
+            text:"reset"
+            color:0,0,0,1
+            background_color:1,1,0,1
+            font_size:20
+            bold: True
+            on_press: app.reset_pupil_count()
+
+
+
+    Widget:
+        Button:
+            pos: 0 , root.height*0.85
+            size_hint_x:0.2
+            text:"Stop \n Experiment"
+            color:0,0,0,1
+            background_color:1,0,0,1
+            font_size:15
+            bold: True
+            on_press: app.exit_experiment()
+    Widget:
+        TextInput:
+            id:next_button
+            pos: root.width*0.70 , root.height*0.2
+            size: root.width*0.15 , root.height*0.13
+            text:"1"
+            font_size:40
+            color:0,0,0,1
+            padding: [20, (self.height-self.line_height)/2]
+
+
+        Button:
+            pos: root.width*0.25 , root.height*0.2
+            size: 350, 80
+            text:'Start step '
+            color:0,0,0,1
+            font_size:40
+            on_press: app.run_dynamics(next_button)
+
+
+<stop_screen>:
+    Widget:
+        Image:
+            size: root.width*1 , root.height*1
+            pos: root.width*0 , root.height*0
+            source: 'bye.jpg'
