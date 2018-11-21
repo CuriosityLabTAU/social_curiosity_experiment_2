@@ -287,11 +287,11 @@ class NaoNode():
         counter = 0
         angles = self.motionProxy.getAngles("Body", True)
         basepose = angles[1]
-
+        time.sleep(2)
         for i in range(1, 5):
-            self.change_pose_util('HeadPitch;' + str(basepose + 0.3 / i) + ';' + str(0.16))
+            self.change_pose_util('HeadPitch;' + str(basepose + 0.3 / i/2) + ';' + str(0.16))
             time.sleep(0.3)
-            self.change_pose_util('HeadPitch;' + str(basepose - 0.15 / i) + ';' + str(0.14))
+            self.change_pose_util('HeadPitch;' + str(basepose - 0.15 / i/2) + ';' + str(0.14))
             time.sleep(0.3)
         self.change_pose_util('HeadPitch;' + str(basepose + 0.05) + ';0.05')
 
@@ -307,12 +307,19 @@ class NaoNode():
 
         self.back_to_live()
 
-    def look_up(self):
+    def look_up(self,side):
         angles = self.motionProxy.getAngles("Body", True)
         basepose = angles[1]
+
+        side=str(side[0])
+        b='social_curiosity2/point_'+side+'_look_up'
+
         self.change_pose_util('HeadPitch;' + str(basepose - 0.4) + ';0.08')
-        time.sleep(6)
-        self.change_pose_util('HeadPitch;' + str(basepose) + ';0.08')
+
+        self.managerProxy.post.runBehavior(b)
+
+
+
 
         self.back_to_live()
 
@@ -330,6 +337,25 @@ class NaoNode():
 
         self.change_pose_util('HeadYaw;' + str(basepose) + ';0.1')
         self.back_to_live()
+
+
+    def open_hands_neg(self):
+        self.managerProxy.post.runBehavior('social_curiosity2/open_hand_neg')
+        time.sleep(1.5)
+        counter = 0
+        angles = self.motionProxy.getAngles("Body", True)
+        basepose = angles[0]
+        print basepose
+        for i in range(1, 5):
+            self.change_pose_util('HeadYaw;' + str(basepose + 0.3 / i/2) + ';' + str(0.16 - 0.000 * i))
+            time.sleep(0.3)
+            self.change_pose_util('HeadYaw;' + str(basepose - 0.3 / i/2) + ';' + str(0.16 - 0.000 * i))
+            time.sleep(0.3)
+
+        self.change_pose_util('HeadYaw;' + str(basepose) + ';0.1')
+        self.back_to_live()
+
+
 
     def hands_on_hips(self):
         self.managerProxy.post.runBehavior('social_curiosity2/hands_on_hips')
@@ -416,9 +442,9 @@ class NaoNode():
 strat=NaoNode(sys.argv[1],sys.argv[2])
 
 #
-# strat=NaoNode('192.168.0.100','left')  #FOR TEST!!!!!!!!!!
-# strat.move_to_pose(['center'])                      #FOR TEST!!!!!!!!!!
-# strat.open_hands()                      #FOR TEST!!!!!!!!!!
+# strat=NaoNode('192.168.0.100','right')  #FOR TEST!!!!!!!!!!
+# strat.look_up(['left'])                      #FOR TEST!!!!!!!!!!
+# # strat.open_hands()                      #FOR TEST!!!!!!!!!!
 
 
 

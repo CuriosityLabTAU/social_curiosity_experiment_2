@@ -115,11 +115,16 @@ class dynamics():
                         "right": [{'action': 'run_behavior', 'parameters': ['social_curiosity2/point_left']}]},
 
                         14: {
-                            "left": [{'action': 'look_up'}],
-                            "center": [{'action': 'look_up'}],
-                            "right": [{'action': 'look_up'}]},
+                            "left": [{'action': 'look_up', 'parameters': ['right']}],
+                            "center": [{'action': 'look_up','parameters': ['center']}],
+                            "right": [{'action': 'look_up','parameters': ['left']}]},
 
                         15: {
+                            "left": [{'action': 'open_hands_neg'}],
+                            "center": [{'action': 'open_hands_neg'}],
+                            "right": [{'action': 'open_hands_neg'}]},
+
+                        16: {
                             "left": [{'action': 'look_down'}],
                             "center": [{'action': 'look_down'}],
                             "right": [{'action': 'look_down'}]}}
@@ -507,7 +512,9 @@ class dynamics():
         robots = [0, 1]
 
 
-        for i in range(15,16):
+        for i in range(17):
+        # for i in [14]:
+
 
             # secondary_robots look at main robot
             self.publisher[0].publish(self.parse_behavior({'action': 'move_to_pose', 'parameters': [self.transformation[0][1]]}))
@@ -528,12 +535,13 @@ class dynamics():
             print i
 
             time.sleep(6)
+            self.publisher[1].publish(self.parse_behavior({'action': 'run_behavior', 'parameters': ['social_curiosity2/back_to_sit_2']}))
 
             self.publisher[0].publish(self.parse_behavior({'action': 'move_to_pose', 'parameters': [self.transformation[0][2]]}))
             time.sleep(1.5)
             self.publisher[1].publish(self.parse_behavior({'action': 'move_to_pose', 'parameters': [self.transformation[1]['h']]}))
 
-            time.sleep(8)
+            time.sleep(10)
 
 
     def test(self,aa):
