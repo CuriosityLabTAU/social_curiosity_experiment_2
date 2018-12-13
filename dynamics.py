@@ -134,37 +134,44 @@ class dynamics():
                                             'turns' :{'number':4, 'first':0,'place_of_h':[2]},
                                             'question_time':[0,1,2,3],
                                             'experimenter_before':None,
-                                            'experimenter_after' :[[{'action': 'run_behavior', 'parameters':['experimenter/2_'+self.gender]},68]]},
+                                            'experimenter_after' :[[{'action': 'run_behavior', 'parameters':['experimenter2/2_'+self.gender]},68]]},
 
                                         1: {'matrix': self.bin_matrix(np.array([[0 , 0.75 , 0.45 , 0.1],[0.9 , 0  ,0.15  ,0.5],[0.6, 0.3 ,0, 0.9]])),
                                             'turns': {'number':8, 'first':1,'place_of_h':[3,6]},
                                             'question_time': [0,1,2,3],
                                             'experimenter_before': None,
-                                            'experimenter_after': [[{'action': 'run_behavior', 'parameters':['experimenter/3']},5]]},
+                                            'experimenter_after': [[{'action': 'run_behavior', 'parameters':['experimenter2/3']},5]]},
 
                                         2: {'matrix': self.bin_matrix(np.array([[0 , 0.9 , 0.15 , 0.5],[0.75 , 0  ,0.45  ,0.9],[0.3, 0.6, 0, 0.1]])),
                                             'turns': {'number':8, 'first':2,'place_of_h':[3,6]},
                                             'question_time': [0,1,2,3],
-                                            'experimenter_before': [[{'action': 'run_behavior', 'parameters':['experimenter/4']},5]],
-                                            'experimenter_after': [[{'action': 'run_behavior', 'parameters':['experimenter/3']},5]]},
+                                            'experimenter_before': [[{'action': 'run_behavior', 'parameters':['experimenter2/4']},5]],
+                                            'experimenter_after': [[{'action': 'run_behavior', 'parameters':['experimenter2/3']},5]]},
 
                                         3: {'matrix': self.bin_matrix(np.array([[0 , 0.45 , 0.75 , 0.5],[0.6 , 0  ,0.3  ,0.1], [0.9, 0.15, 0 , 0.9]])),
                                             'turns': {'number':8, 'first':'h','place_of_h':[3,6]},
                                             'question_time': [0,1,2,3],
-                                            'experimenter_before': [[{'action': 'run_behavior', 'parameters':['experimenter/4.1']},5]],
-                                            'experimenter_after': [[{'action': 'run_behavior', 'parameters':['experimenter/3']},5]]},
+                                            'experimenter_before': [[{'action': 'run_behavior', 'parameters':['experimenter2/4.1']},5]],
+                                            'experimenter_after': [[{'action': 'run_behavior', 'parameters':['experimenter2/3']},5]]},
 
                                         4: {'matrix': self.bin_matrix(np.array([[0 , 0.3 , 0.6 , 0.9],[0.15 , 0  ,0.9  ,0.1],[0.45 , 0.75 , 0 ,0.5]])),
                                             'turns': {'number':8, 'first':0,'place_of_h':[3,6]},
                                             'question_time': [0,1,2,3],
-                                            'experimenter_before': [[{'action': 'run_behavior', 'parameters':['experimenter/4']},5]],
-                                            'experimenter_after': [[{'action': 'run_behavior', 'parameters':['experimenter/5_'+self.gender]},10]]}}
+                                            'experimenter_before': [[{'action': 'run_behavior', 'parameters':['experimenter2/4']},5]],
+                                            'experimenter_after': [[{'action': 'run_behavior', 'parameters':['experimenter2/3']},5]]},
+
+                                        5: {'matrix': self.bin_matrix(np.array([[0, 0.3, 0.6, 0.9], [0.15, 0, 0.9, 0.1], [0.45, 0.75, 0, 0.5]])),
+                                            'turns': {'number': 16, 'first': 0, 'place_of_h': [3, 6, 9]},
+                                            'question_time': None,
+                                            'experimenter_before': [[{'action': 'run_behavior', 'parameters': ['experimenter2/4.5'+ self.gender]}, 20]],
+                                            'experimenter_after': [[{'action': 'run_behavior', 'parameters': ['experimenter2/5_' + self.gender]}, 10]]}}
+
 
         self.questions= {
-                                0: [[{'action': 'run_behavior', 'parameters': ['experimenter/7']},6]],
-                                1: [[{'action': 'run_behavior', 'parameters': ['experimenter/8']}, 5]],
-                                2: [[{'action': 'run_behavior', 'parameters': ['experimenter/9_'+self.gender]}, 4]],
-                                3: [[{'action': 'run_behavior', 'parameters': ['experimenter/10_'+self.gender]}, 4]]}
+                                0: [[{'action': 'run_behavior', 'parameters': ['experimenter2/7']},6]],
+                                1: [[{'action': 'run_behavior', 'parameters': ['experimenter2/8']}, 5]],
+                                2: [[{'action': 'run_behavior', 'parameters': ['experimenter2/9_'+self.gender]}, 4]],
+                                3: [[{'action': 'run_behavior', 'parameters': ['experimenter2/10_'+self.gender]}, 4]]}
 
         self.discrete_behaviors=sorted(self.behaviors.keys())
 
@@ -394,10 +401,10 @@ class dynamics():
 
         ## introduction
         if self.experiment_step==0:
-            self.publisher[3].publish(self.parse_behavior({'action': 'run_behavior', 'parameters':['experimenter/1_'+self.gender]}))
+            self.publisher[3].publish(self.parse_behavior({'action': 'run_behavior', 'parameters':['experimenter2/1_'+self.gender]}))
             time.sleep(28)
         else:
-            self.publisher[3].publish(self.parse_behavior({'action': 'run_behavior', 'parameters': ['experimenter/6_'+self.gender]}))
+            self.publisher[3].publish(self.parse_behavior({'action': 'run_behavior', 'parameters': ['experimenter2/6_'+self.gender]}))
             time.sleep(11)
         print  'question_time'
 
@@ -443,7 +450,7 @@ class dynamics():
                 self.publisher[correct_robot_answer].publish(self.parse_behavior({'action': 'run_behavior', 'parameters': [parameter]}))
                 time.sleep(2)
 
-                parameter=random.choice(['experimenter/11','experimenter/11_'+self.gender])
+                parameter=random.choice(['experimenter2/11','experimenter2/11_'+self.gender])
                 self.publisher[3].publish(self.parse_behavior({'action': 'run_behavior', 'parameters': [parameter]}))
                 time.sleep(5)
 
@@ -467,7 +474,7 @@ class dynamics():
                     time.sleep(2)
 
 
-                    parameter = random.choice(['experimenter/12', 'experimenter/12_' + self.gender])
+                    parameter = random.choice(['experimenter2/12', 'experimenter2/12_' + self.gender])
 
                     self.publisher[3].publish(self.parse_behavior({'action': 'run_behavior', 'parameters': [parameter]}))
                     time.sleep(5)
@@ -485,7 +492,7 @@ class dynamics():
 
                     time.sleep(1)
 
-                    parameter = random.choice(['experimenter/12'])
+                    parameter = random.choice(['experimenter2/12'])
                     self.publisher[3].publish(self.parse_behavior({'action': 'run_behavior', 'parameters': [parameter]}))
 
                     time.sleep(5)

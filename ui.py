@@ -107,7 +107,7 @@ class ExperimentApp(App):
         self.sm.add_widget(screen)
 
         self.next_step=1
-        self.number_of_steps=5
+        self.number_of_steps=6
         self.correct_answer_score=0
         self.pupil_count=0
 
