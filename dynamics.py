@@ -187,6 +187,9 @@ class dynamics():
 
         self.present_direction=0
 
+        with open('pseudo_randomization_probs.json', 'r') as data_file:
+            self.pseudo_randomization_dict = json.load(data_file)
+
         #ros:
         rospy.init_node('dynamics')
         self.publisher ={}

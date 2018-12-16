@@ -1,13 +1,13 @@
-import numpy as np
-import time
-import rospy
-from std_msgs.msg import String
-import operator
-import sys
+# import numpy as np
+# import time
+# import rospy
+# from std_msgs.msg import String
+# import operator
+# import sys
 import json
-import random
-import pandas as pd
-from numpy.random import choice
+# import random
+# import pandas as pd
+# from numpy.random import choice
 
 # class dynamics():
 #     def __init__(self):
@@ -47,6 +47,11 @@ from numpy.random import choice
 #
 # with open('cinfig_hist_data.json', 'w') as outfile:
 #     json.dump(cinfig_hist_data, outfile)
-from random import randint
+# from random import randint
+#
+# print (randint(1, 4))
 
-print (randint(1, 4))
+with open('pseudo_randomization_probs.json','r') as data_file:
+    pseudo_randomization_dict = json.load(data_file)
+
+print pseudo_randomization_dict['2']['-1.0']

@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import json
+import random
 
 
 AMT_data=pd.read_csv('qualtrics_data.csv')
@@ -34,6 +35,8 @@ AMT_data=AMT_data[AMT_data.agree_to_participate==1]
 #validation
 AMT_data=AMT_data[AMT_data.validation!=21]
 AMT_data=AMT_data[AMT_data.duration >180] #more then 3 min
+AMT_data=AMT_data[AMT_data.age < 36]
+
 
 ######################################################################################
 
@@ -106,21 +109,35 @@ n=3
 for col in list(probs_df):
     col_best_n_values=sorted(probs_df[col].tolist(),reverse =True)[0:n]
 
-    probs_df.loc[(probs_df[col] < col_best_n_values[-1])] = 0
+    probs_df.loc[(probs_df[col] < col_best_n_values[-1]),[col]] = 0
 
+
+#norem again:
+probs_df=probs_df.div(probs_df.sum(axis=0),axis=1)
 print probs_df
 
-#normliaze agen
-#fix fug with 1
 
 
 probs_df.to_csv('probs_from_AMT.csv')
 
 
 #make json for pseudo randomization:
+np.random.seed(1)
+pseudo_randomization_dict={}
+for experiment_step in range(6):
+    pseudo_randomization_dict[experiment_step]={}
+
+    for relationship in list(probs_df):
+        #generate list
+
+        probability_distribution=probs_df[relationship].tolist()
+        list_of_candidates= final_behaviors
+        random_behavior_list = np.random.choice(list_of_candidates, 50, p=probability_distribution)
+
+        pseudo_randomization_dict[experiment_step][str(relationship)]=random_behavior_list.tolist()
 
 
 
 # save
-# with open('pseudo_randomization_probs.json', 'w') as outfile:
-#     json.dump(pseudo_randomization_dict, outfile)
+with open('pseudo_randomization_probs.json', 'w') as outfile:
+    json.dump(pseudo_randomization_dict, outfile)
