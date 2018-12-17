@@ -568,27 +568,11 @@ class dynamics():
         self.publisher['left'].publish('{\"action\": \"rest\"}')
 
     def choose_behaviour(self,relationship):
-        probability_distribution=self.probs_from_AMT[str(relationship)].tolist()
-        list_of_candidates=self.discrete_behaviors
-        draw = np.random.choice(list_of_candidates, 1, p=probability_distribution)
-        return draw[0]
+        draw = self.pseudo_randomization_dict[self.experiment_step][str(float(relationship))].pop()
+        return draw
 
     def bin_matrix(self,_matrix):
-        number_of_bins = 9
-        bins = [i * (1.0 / number_of_bins) for i in xrange(number_of_bins + 1)]
-        labels = [(bins[i] + bins[i + 1]) / 2.0 for i in xrange(number_of_bins)]
-        labels = list(np.around(np.array(labels), 3))
         matrix=_matrix
-
-        for i in range(_matrix.shape[0]):
-            for j in range(_matrix.shape[1]):
-                for _bin in range(len(bins) - 1):
-                    if matrix[i, j] >= bins[_bin] and matrix[i, j] < bins[_bin + 1]:
-                       matrix[i, j] = labels[_bin]
-        matrix[0,0]=0
-        matrix[1,1]=0
-        matrix[2,2]=0
-
         return matrix
 
     def update_current_answer(self,data):
