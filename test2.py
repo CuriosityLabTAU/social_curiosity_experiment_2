@@ -53,6 +53,6 @@ import json
 
 with open('pseudo_randomization_probs.json','r') as data_file:
     pseudo_randomization_dict = json.load(data_file)
-for i in range(10):
-    a=pseudo_randomization_dict['1'][str(float(0))].pop()
+for i in range(30):
+    a=pseudo_randomization_dict['1'][str(float(-1))].pop()
     print a

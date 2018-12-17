@@ -44,7 +44,9 @@ print AMT_data.describe()
 
 ######################################################################################
 #take out behavior
-take_out_behavior=['2'] # '2' is just for test!
+take_out_behavior=['6','9','13','14']
+# take_out_behavior=[]
+
 final_behaviors= list(set([str(i) for i in range(16)]).difference(set(take_out_behavior)))
 
 print final_behaviors
@@ -65,15 +67,15 @@ AMT_data=AMT_data.div(3)
 
 #########################################################################################
 
-number_of_bins=5
+number_of_bins=3
 
 plt.figure()
 hist=AMT_data.hist(bins=number_of_bins,xlabelsize=15,ylabelsize=15)
-plt.show()
+# plt.show()
 
 
-bins = [-1.1,-0.8,-0.2,0.2,0.8,1]
-labels = [-1,-0.5,0,0.5,1]
+bins = [-1.1,-0.2,0.2,1]
+labels = [-1,0,1]
 labels=list(np.around(np.array(labels),3))
 shape=AMT_data.count()
 
@@ -122,7 +124,7 @@ probs_df.to_csv('probs_from_AMT.csv')
 
 
 #make json for pseudo randomization:
-np.random.seed(1)
+np.random.seed(99)
 pseudo_randomization_dict={}
 for experiment_step in range(6):
     pseudo_randomization_dict[experiment_step]={}

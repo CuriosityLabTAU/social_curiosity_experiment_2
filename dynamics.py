@@ -130,37 +130,37 @@ class dynamics():
                             "right": [{'action': 'look_down'}]}}
 
         self.metadata_for_experiment_steps = {
-                                        0: {'matrix':self.bin_matrix(np.array([[0, -1, 0, 0.5], [-0.5, 0, -0.5, -1], [1, 0.5, 0, 1]])),
+                                        0: {'matrix':self.bin_matrix(np.array([[0, 0, -1, -1], [-1, 0, 0, 0], [1, 1, 0, 1]])),
                                             'turns' :{'number':4, 'first':0,'place_of_h':[2]},
                                             'question_time':[0,1,2,3],
                                             'experimenter_before':None,
                                             'experimenter_after' :[[{'action': 'run_behavior', 'parameters':['experimenter2/2_'+self.gender]},68]]},
 
-                                        1: {'matrix': self.bin_matrix(np.array([[0, -1, 1, -1], [0, 0, 0.5, 1], [0.5, -0.5, 0, -0.5]])),
+                                        1: {'matrix': self.bin_matrix(np.array([[0, -1, 0, -1], [1, 0, 1, 1], [-1, 0, 0, 0]])),
                                             'turns': {'number':8, 'first':1,'place_of_h':[3,6]},
                                             'question_time': [0,1,2,3],
                                             'experimenter_before': None,
                                             'experimenter_after': [[{'action': 'run_behavior', 'parameters':['experimenter2/3']},5]]},
 
-                                        2: {'matrix': self.bin_matrix(np.array([[0, 0, -1, 0.5], [1, 0, 0.5, 1], [-0.5, -0.5, 0, -1]])),
+                                        2: {'matrix': self.bin_matrix(np.array([[0, 0, -1, 0], [1, 0, 1, 1], [0, -1, 0, -1]])),
                                             'turns': {'number':8, 'first':2,'place_of_h':[3,6]},
                                             'question_time': [0,1,2,3],
                                             'experimenter_before': [[{'action': 'run_behavior', 'parameters':['experimenter2/4']},5]],
                                             'experimenter_after': [[{'action': 'run_behavior', 'parameters':['experimenter2/3']},5]]},
 
-                                        3: {'matrix': self.bin_matrix(np.array([[0, 0, 1, 1], [-1, 0, -0.5, -1], [0.5, -0.5, 0, 0.5]])),
+                                        3: {'matrix': self.bin_matrix(np.array([[0, -1, 0, 0], [0, 0, -1, -1], [1, 1, 0, 1]])),
                                             'turns': {'number':8, 'first':'h','place_of_h':[3,6]},
                                             'question_time': [0,1,2,3],
                                             'experimenter_before': [[{'action': 'run_behavior', 'parameters':['experimenter2/4.1']},5]],
                                             'experimenter_after': [[{'action': 'run_behavior', 'parameters':['experimenter2/3']},5]]},
 
-                                        4: {'matrix': self.bin_matrix(np.array([[0, 1, -1, -1], [0.5, 0, -0.5, -0.5], [0, 0.5, 0, 1]])),
+                                        4: {'matrix': self.bin_matrix(np.array([[0, 1, 1, 1], [0, 0, -1, 0], [-1, 0, 0, -1]])),
                                             'turns': {'number':8, 'first':0,'place_of_h':[3,6]},
                                             'question_time': [0,1,2,3],
                                             'experimenter_before': [[{'action': 'run_behavior', 'parameters':['experimenter2/4']},5]],
                                             'experimenter_after': [[{'action': 'run_behavior', 'parameters':['experimenter2/3']},5]]},
 
-                                        5: {'matrix': self.bin_matrix(np.array([[0, 0, 1, 1], [-1, 0, -0.5, -0.5], [0.5, 0.5, 0, -1]])),
+                                        5: {'matrix': self.bin_matrix(np.array([[0, 1, 1, 1], [0, 0, 0, -1], [-1, -1, 0, 0]])),
                                             'turns': {'number': 16, 'first': 0, 'place_of_h': [3, 6, 9]},
                                             'question_time': None,
                                             'experimenter_before': [[{'action': 'run_behavior', 'parameters': ['experimenter2/4.5'+ self.gender]}, 20]],
