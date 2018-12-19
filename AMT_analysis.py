@@ -107,7 +107,7 @@ print probs_df
 
 
 #leave only best n probabilities
-n=3
+n=-1
 for col in list(probs_df):
     col_best_n_values=sorted(probs_df[col].tolist(),reverse =True)[0:n]
 
