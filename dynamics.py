@@ -163,7 +163,7 @@ class dynamics():
                                         5: {'matrix': self.bin_matrix(np.array([[0, 1, 1, 1], [0, 0, 0, -1], [-1, -1, 0, 0]])),
                                             'turns': {'number': 16, 'first': 0, 'place_of_h': [3, 6, 9]},
                                             'question_time': None,
-                                            'experimenter_before': [[{'action': 'run_behavior', 'parameters': ['experimenter2/4.5'+ self.gender]}, 20]],
+                                            'experimenter_before': [[{'action': 'run_behavior', 'parameters': ['experimenter2/4.5'+ self.gender]}, 17]],
                                             'experimenter_after': [[{'action': 'run_behavior', 'parameters': ['experimenter2/5_' + self.gender]}, 10]]}}
 
 
