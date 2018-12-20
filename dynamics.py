@@ -246,7 +246,7 @@ class dynamics():
         self.is_stop=1
         self.publisher_log.publish('experiment_stop')
 
-        for nao in range(self.number_of_naos):
+        for nao in range(self.number_of_naos-1):
             self.publisher[nao].publish(self.parse_behavior({'action': 'end_work'}))
 
         if self.experiment_step == 5:
@@ -255,6 +255,7 @@ class dynamics():
             time.sleep(10)
             self.publisher_log.publish('stoped_in_turn:'+str(self.finished_turn))
 
+        self.publisher[3].publish(self.parse_behavior({'action': 'end_work'}))
 
     def run_dynamics(self,data):
         #for AMT movies:
