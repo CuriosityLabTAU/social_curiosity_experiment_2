@@ -409,10 +409,15 @@ class NaoNode():
 
     def move_head_naturally(self,_current_relationship):
         current_relationship=float(_current_relationship[0])
-        if current_relationship==-1:
+        if current_relationship== None:
             factor=1
         else:
-            factor= max(0.3, 1-current_relationship)
+            if current_relationship == -1:
+                factor = 1
+            elif current_relationship == 0:
+                factor = 0.5
+            else:
+                factor =0.3
 
         angles=self.motionProxy.getAngles("Body", True)
         basepose_HeadYaw = angles[0]

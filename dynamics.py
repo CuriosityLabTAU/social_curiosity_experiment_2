@@ -29,6 +29,8 @@ class dynamics():
 
         self.experimenter_nao=3
 
+        self.finished_turn = -1
+
         self.is_stop = 0
 
         self.gender=_info.split(',')[1]
@@ -247,6 +249,12 @@ class dynamics():
         for nao in range(self.number_of_naos):
             self.publisher[nao].publish(self.parse_behavior({'action': 'end_work'}))
 
+        if self.experiment_step == 5:
+            time.sleep(1)
+            self.publisher[3].publish(self.parse_behavior({'action': 'run_behavior', 'parameters': ['experimenter2/5_' + self.gender]}))
+            time.sleep(10)
+            self.publisher_log.publish('stoped_in_turn:'+str(self.finished_turn))
+
 
     def run_dynamics(self,data):
         #for AMT movies:
@@ -263,6 +271,7 @@ class dynamics():
         params_for_step=self.metadata_for_experiment_steps[self.experiment_step]
         self.matrix=params_for_step['matrix']
 
+        self.finished_turn = -1
         if self.is_stop == 1:
             return
 
@@ -366,6 +375,8 @@ class dynamics():
 
 
             time.sleep(2.5)
+
+            self.finished_turn = turn
 
         #sit befor questions
         for robot in [0, 1, 2]:

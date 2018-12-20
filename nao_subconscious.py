@@ -14,7 +14,7 @@ class NaoSubconscious():
         self.port = 9559
         self.robot_ip=_robot_ip
         self.node_name=_node_name
-        self.current_relationship = -1
+        self.current_relationship = None
 
 
         self.conscious_movement = False
@@ -76,10 +76,10 @@ class NaoSubconscious():
                 blinking_message = self.parse_behavior({'action': 'blink'})
             self.publisher.publish(blinking_message)
             time_now=time.time()
-            if self.current_relationship <0.5 and self.current_relationship >= 0:
-                time_between_blinks =np.random.exponential(3.5)
-            else:
+            if self.current_relationship > 0.5:
                 time_between_blinks =np.random.exponential(2.3)
+            else:
+                time_between_blinks =np.random.exponential(3.5)
             while self.blinking_on == True and (time.time()-time_now)<time_between_blinks:  #like sleep
                 pass
 
