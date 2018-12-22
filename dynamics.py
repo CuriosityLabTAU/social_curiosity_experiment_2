@@ -272,7 +272,7 @@ class dynamics():
         params_for_step=self.metadata_for_experiment_steps[self.experiment_step]
         self.matrix=params_for_step['matrix']
 
-        self.finished_turn = -1
+        self.finished_turn = 0
         if self.is_stop == 1:
             return
 
@@ -385,7 +385,7 @@ class dynamics():
 
             time.sleep(2.5)
 
-            self.finished_turn = turn
+            self.finished_turn = turn+1
 
         #sit befor questions
         for robot in [0, 1, 2]:
