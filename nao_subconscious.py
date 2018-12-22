@@ -20,6 +20,8 @@ class NaoSubconscious():
         self.conscious_movement = False
         self.blinking_on=True
 
+        np.random.seed(99)
+
         #ros:
         rospy.init_node('nao_subconscious'+self.node_name)
         name_publisher ='to_nao_subconscious_'+self.node_name

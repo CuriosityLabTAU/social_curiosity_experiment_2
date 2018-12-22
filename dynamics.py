@@ -316,6 +316,10 @@ class dynamics():
 
 
             secondary_robots = [0, 1, 2]
+            boolean= int(self.pseudo_randomization_dict['rand_boolean'].pop())
+            if boolean==1:
+                secondary_robots = [2, 1, 0]
+
 
             print main_robot
 
@@ -476,6 +480,9 @@ class dynamics():
 
             else:
                 robot = [0, 1, 2]
+                boolean = int(self.pseudo_randomization_dict['rand_boolean'].pop())
+                if boolean == 1:
+                    robot = [2, 1, 0]
                 robot.remove(correct_robot_answer)
                 if self.current_answer!=-1:
 

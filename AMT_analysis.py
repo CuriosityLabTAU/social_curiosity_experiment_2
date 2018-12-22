@@ -139,6 +139,8 @@ for experiment_step in range(6):
 
         pseudo_randomization_dict[experiment_step][str(relationship)]=random_behavior_list.tolist()
 
+pseudo_randomization_dict['rand_boolean']=np.random.choice([1,-1], 10000, p=[0.5,0.5]).tolist()
+print pseudo_randomization_dict['rand_boolean']
 
 
 # save

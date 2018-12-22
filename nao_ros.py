@@ -98,6 +98,8 @@ class NaoNode():
 
         robot_name=self.systemProxy.robotName()
 
+        random.seed(99)
+
 
         # #ros:
         rospy.init_node('nao_listener'+self.node_name)
