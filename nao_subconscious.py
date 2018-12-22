@@ -14,7 +14,7 @@ class NaoSubconscious():
         self.port = 9559
         self.robot_ip=_robot_ip
         self.node_name=_node_name
-        self.current_relationship = None
+        self.current_relationship = -2
 
 
         self.conscious_movement = False
@@ -63,7 +63,7 @@ class NaoSubconscious():
             self.blinking_on = False
 
         elif action=='change_current_relationship':
-            self.current_relationship==float(parameters[0])
+            self.current_relationship=float(parameters[0])
 
         else:
             self.conscious_movement = True
@@ -85,8 +85,9 @@ class NaoSubconscious():
 
 
     def alive(self, data):
-        message = self.parse_behavior({'action': 'move_head_naturally','parameters':[str(self.current_relationship)]})
         while True:
+            message = self.parse_behavior(
+            {'action': 'move_head_naturally', 'parameters': [str(self.current_relationship)]})
             if self.conscious_movement == False:
                 self.publisher.publish(message)
             time_move = np.random.exponential(5)

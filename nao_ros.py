@@ -409,7 +409,7 @@ class NaoNode():
 
     def move_head_naturally(self,_current_relationship):
         current_relationship=float(_current_relationship[0])
-        if current_relationship== None:
+        if current_relationship== -2:
             factor=1
         else:
             if current_relationship == -1:

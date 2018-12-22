@@ -50,9 +50,12 @@ import json
 # from random import randint
 #
 # print (randint(1, 4))
+#
+# with open('pseudo_randomization_probs.json','r') as data_file:
+#     pseudo_randomization_dict = json.load(data_file)
+# for i in range(30):
+#     a=pseudo_randomization_dict['0'][str(int(1))].pop()
+#     print a
 
-with open('pseudo_randomization_probs.json','r') as data_file:
-    pseudo_randomization_dict = json.load(data_file)
-for i in range(30):
-    a=pseudo_randomization_dict['1'][str(float(-1))].pop()
-    print a
+
+print ((0+1) %3)

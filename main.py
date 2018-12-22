@@ -61,7 +61,7 @@ def start_working(subject_id, nao_info):
 
 
     def worker7():
-        os.system('rosbag record -a -o data/social_curiosity_big_experiment_' + str(subject_id) + '.bag')
+        os.system('rosbag record -a -o data/social_curiosity_big_experiment2_' + str(subject_id) + '.bag')
 
 
 

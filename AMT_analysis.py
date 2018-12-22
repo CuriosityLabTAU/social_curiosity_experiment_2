@@ -41,6 +41,7 @@ AMT_data=AMT_data[AMT_data.age < 36]
 ######################################################################################
 
 print AMT_data.describe()
+print AMT_data.std()
 
 ######################################################################################
 #take out behavior
@@ -107,7 +108,7 @@ print probs_df
 
 
 #leave only best n probabilities
-n=-1
+n=3
 for col in list(probs_df):
     col_best_n_values=sorted(probs_df[col].tolist(),reverse =True)[0:n]
 

@@ -165,7 +165,7 @@ class dynamics():
                                         5: {'matrix': self.bin_matrix(np.array([[0, 1, 1, 1], [0, 0, 0, -1], [-1, -1, 0, 0]])),
                                             'turns': {'number': 16, 'first': 0, 'place_of_h': [3, 6, 9]},
                                             'question_time': None,
-                                            'experimenter_before': [[{'action': 'run_behavior', 'parameters': ['experimenter2/4.5'+ self.gender]}, 17]],
+                                            'experimenter_before': [[{'action': 'run_behavior', 'parameters': ['experimenter2/4.5_'+ self.gender]}, 18]],
                                             'experimenter_after': [[{'action': 'run_behavior', 'parameters': ['experimenter2/5_' + self.gender]}, 10]]}}
 
 
@@ -253,7 +253,7 @@ class dynamics():
             time.sleep(1)
             self.publisher[3].publish(self.parse_behavior({'action': 'run_behavior', 'parameters': ['experimenter2/5_' + self.gender]}))
             time.sleep(10)
-            self.publisher_log.publish('stoped_in_turn:'+str(self.finished_turn))
+            self.publisher_log.publish('stoped_on_turn:'+str(self.finished_turn))
 
         self.publisher[3].publish(self.parse_behavior({'action': 'end_work'}))
 
@@ -330,28 +330,32 @@ class dynamics():
                 self.publisher[main_robot].publish(self.parse_behavior({'action':'change_current_relationship','parameters':[str(1.0)]}))
                 self.publisher_log.publish('main:behavior:' + str(behavior_n))
 
-            #secondary_robots look at main robot
-            for robot in secondary_robots:
-                time.sleep(1)
-                self.publisher[robot].publish(self.parse_behavior({'action': 'move_to_pose', 'parameters': [self.transformation[robot][main_robot]]}))
-
-            time.sleep(8)
-
-            #secondary_robots look at main behaviour
+            ###
             if main_robot=='h':
                 place_in_matrix=3
             else:
                 place_in_matrix=main_robot
 
+            #secondary_robots look at main robot
+            for robot in secondary_robots:
+                time.sleep(1)
+                self.publisher[robot].publish(self.parse_behavior({'action': 'move_to_pose', 'parameters': [self.transformation[robot][main_robot]]}))
+
+                #update relatioship
+                relationship=self.matrix[robot,place_in_matrix]
+                self.publisher[robot].publish(self.parse_behavior({'action':'change_current_relationship','parameters':[str(relationship)]}))
+
+            time.sleep(6.5)
+
+            #secondary_robots behaviour
             back_to_sit_bol=[0,0,0]
             for robot in secondary_robots:
                 relationship=self.matrix[robot,place_in_matrix]
                 direction_for_behavior=self.transformation[robot][main_robot]
-                chosen_behaviour=self.choose_behaviour(relationship)
+                chosen_behaviour=int(self.choose_behaviour(relationship))
 
                 behavior=random.choice(self.behaviors[chosen_behaviour][direction_for_behavior])
 
-                self.publisher[robot].publish(self.parse_behavior({'action':'change_current_relationship','parameters':[str(relationship)]}))
                 self.publisher[robot].publish(self.parse_behavior(behavior))
                 self.publisher_log.publish('secondary:'+str(robot)+'behavior:' + str(self.parse_behavior(behavior)+':relationship:'+str(relationship)))
 
@@ -367,7 +371,7 @@ class dynamics():
 
             for robot in [0,1,2]:
                 # change_current_relationship
-                self.publisher[robot].publish(self.parse_behavior({'action': 'change_current_relationship', 'parameters': [str(-1.0)]}))
+                self.publisher[robot].publish(self.parse_behavior({'action': 'change_current_relationship', 'parameters': [str(-2)]}))
                 #go to sit
                 if back_to_sit_bol[robot]==1:
                     self.publisher[robot].publish(self.parse_behavior({'action': 'run_behavior', 'parameters': ['social_curiosity2/back_to_sit']}))
@@ -580,7 +584,7 @@ class dynamics():
         self.publisher['left'].publish('{\"action\": \"rest\"}')
 
     def choose_behaviour(self,relationship):
-        draw = self.pseudo_randomization_dict[self.experiment_step][str(float(relationship))].pop()
+        draw = self.pseudo_randomization_dict[str(self.experiment_step)][str(int(relationship))].pop()
         return draw
 
     def bin_matrix(self,_matrix):

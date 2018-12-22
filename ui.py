@@ -107,6 +107,7 @@ class ExperimentApp(App):
         self.sm.add_widget(screen)
 
         self.next_step=1
+
         self.number_of_steps=6
         self.correct_answer_score=0
         self.pupil_count=0
@@ -116,9 +117,9 @@ class ExperimentApp(App):
 
         ##ros
         # roscore
-        t1 = threading.Thread(target=self.worker1)
-        t1.start()
-        threading._sleep(0.2)
+        # t1 = threading.Thread(target=self.worker1)
+        # t1.start()
+        # threading._sleep(0.5)
 
         #ros_node
         rospy.init_node('ui')
